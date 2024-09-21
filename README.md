@@ -12,6 +12,25 @@ $ ft_nmap [OPTIONS] TARGET PORT(S)
                ports: a single port number or a range in the syntax xx-xx
                1024 is the max number of ports
 ```
+## options
+```
+--help         prints this help screen and exit
+--verbose      display incoming/outgoing packets
+--scan         one or multiple scans: SYN | NULL | FIN | XMAS | ACK | UDP
+               dafault: all
+--flags        custom scan by setting the tcp flags header manually [syn, ack, rst, fin, psh, urg]
+               example: --flags syn ack
+--seq          tcp header: sequence number
+               default: random
+--ack_seq      tcp header: acknowledgment number
+               default: 0
+--speedup      number of parallel threads to use
+               max: 255
+               default: number of threads == number of ports
+--interface    name of the interface to use
+               default: enp0s3
+               mandatory if this interface is not present/active
+```
 ## example
 ```
 $ ft_nmap --scan SYN 192.168.1.100 80-443
