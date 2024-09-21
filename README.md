@@ -23,7 +23,7 @@ $ ft_nmap [OPTIONS] TARGET PORT(S)
 --verbose      display incoming/outgoing packets
 --scan         one or multiple scans: SYN | NULL | FIN | XMAS | ACK | UDP
                dafault: all
---flags        custom scan by setting the tcp flags header manually [syn, ack, rst, fin, psh, urg]
+--flags        setting the tcp flags header manually [syn, ack, rst, fin, psh, urg]
                example: --flags syn ack
 --seq          tcp header: sequence number
                default: random
