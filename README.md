@@ -1,9 +1,11 @@
 # FT_NMAP
 
 ## about
-This project is a simple,
-yet effective port scanning tool designed to help
-identify open ports on a target network or host. 
+This project is a simple, yet effective port scanning tool designed to help identify open ports on a target network or host. Crafted in C for efficiency and portability, it offers a basic foundation for network exploration and security assessments.
+## key features
+- initial ICMP ping: Prior to port scanning, the tool performs an ICMP ping to verify host connectivity.
+- Nmap-like scans: Perform SYN, ACK, FIN, NULL, XMAS, and UDP scans to identify open ports and running services.
+- Custom TCP flags: Customize scan behavior by specifying custom TCP flag combinations using the --flags option.
 ## requirements
 - linux
 - root privilege
