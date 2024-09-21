@@ -6,6 +6,7 @@ This project is a simple, yet effective port scanning tool designed to help iden
 - initial ICMP ping: Prior to port scanning, the tool performs an ICMP ping to verify host connectivity.
 - Nmap-like scans: Perform SYN, ACK, FIN, NULL, XMAS, and UDP scans to identify open ports and running services.
 - Custom TCP flags: Customize scan behavior by specifying custom TCP flag combinations using the --flags option.
+- Service detection: Attempts to identify potential services by comparing ports and transport protocols to the Service Name and Transport Protocol Port Number Registry.
 ## requirements
 - linux
 - root privilege
