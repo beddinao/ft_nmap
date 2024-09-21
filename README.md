@@ -16,3 +16,4 @@ $ ft_nmap [OPTIONS] TARGET PORT(S)
 ```
 $ ft_nmap --scan SYN 192.168.1.100 80-443
 ```
+This command will perform a SYN scan on host 192.168.1.100 for all ports from 80 to 443.
