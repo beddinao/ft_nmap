@@ -1,7 +1,9 @@
 # FT_NMAP
+
 ## about
 This project is a simple,
-yet effective port scanning tool designed to help identify open ports on a target network or host. 
+yet effective port scanning tool designed to help
+identify open ports on a target network or host. 
 ## requirements
 - linux
 - root privilege
@@ -35,4 +37,5 @@ $ ft_nmap [OPTIONS] TARGET PORT(S)
 ```
 $ ft_nmap --scan SYN 192.168.1.100 80-443
 ```
-This command will perform a SYN scan on host 192.168.1.100 for all ports from 80 to 443.
+This command will perform a SYN scan
+on host 192.168.1.100 for all ports from 80 to 443.
