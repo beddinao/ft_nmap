@@ -38,10 +38,74 @@ $ ft_nmap [OPTIONS] TARGET PORT(S)
 ```
 ## Example
 ```
-$ ft_nmap --scan SYN 192.168.1.100 80-443
+$ ft_nmap --scan SYN ACK scanme.nmap.org 80-100
+Configurations:
+Target Ip-Address: 45.33.32.156
+Source Ip-Address: 10.13.100.75
+Using Interface: enp0s3
+......................
+icmp_echo request sent..
+icmp_echoreply echo.id=64936, icmp_seq=65
+Host State: Up
+......................
+No of Ports to scan: 21
+No of threads: 21
+Using known services database: database/services
+Scans to be performed: SYN ACK 
+Scanning...
+......................
+Scan took 0.028658 secs
+IP address: 45.33.32.156
+
+Open ports:
+Port       Service Name (if applicable)     Results                                                [Conclusion]
+                                                                                                               
+80         http                             SYN(Open) ACK(Unfiltered)                              [Open]
+                                                                                                               
+
+Closed/Filtered/Unfiltered ports:
+Port       Service Name (if applicable)     Results                                                [Conclusion]
+                                                                                                               
+81         hosts2-ns                        SYN(Closed) ACK(Unfiltered)                            [Closed]
+                                                                                                               
+82         xfer                             SYN(Closed) ACK(Unfiltered)                            [Closed]
+                                                                                                               
+83         mit-ml-dev                       SYN(Closed) ACK(Unfiltered)                            [Closed]
+                                                                                                               
+84         ctf                              SYN(Closed) ACK(Unfiltered)                            [Closed]
+                                                                                                               
+85         mit-ml-dev                       SYN(Closed) ACK(Unfiltered)                            [Closed]
+                                                                                                               
+86         mfcobol                          SYN(Closed) ACK(Unfiltered)                            [Closed]
+                                                                                                               
+87         priv-term-l                      SYN(Closed) ACK(Unfiltered)                            [Closed]
+                                                                                                               
+88         kerberos-sec                     SYN(Closed) ACK(Unfiltered)                            [Closed]
+                                                                                                               
+89         su-mit-tg                        SYN(Closed) ACK(Unfiltered)                            [Closed]
+                                                                                                               
+90         dnsix                            SYN(Closed) ACK(Unfiltered)                            [Closed]
+                                                                                                               
+91         mit-dov                          SYN(Closed) ACK(Unfiltered)                            [Closed]
+                                                                                                               
+92         npp                              SYN(Closed) ACK(Unfiltered)                            [Closed]
+                                                                                                               
+93         dcp                              SYN(Closed) ACK(Unfiltered)                            [Closed]
+                                                                                                               
+94         objcall                          SYN(Closed) ACK(Unfiltered)                            [Closed]
+                                                                                                               
+95         supdup                           SYN(Closed) ACK(Unfiltered)                            [Closed]
+                                                                                                               
+96         dixie                            SYN(Closed) ACK(Unfiltered)                            [Closed]
+                                                                                                               
+97         swift-rvf                        SYN(Closed) ACK(Unfiltered)                            [Closed]
+                                                                                                               
+98         linuxconf                        SYN(Closed) ACK(Unfiltered)                            [Closed]
+                                                                                                               
+99         metagram                         SYN(Closed) ACK(Unfiltered)                            [Closed]
+                                                                                                               
+100        newacct                          SYN(Closed) ACK(Unfiltered)                            [Closed]
 ```
-This command will perform a SYN scan
-on host 192.168.1.100 for all ports from 80 to 443.
 
 ## Upcoming Features
 - OS fingerprinting: Attempt to identify the operating system of the target host.
