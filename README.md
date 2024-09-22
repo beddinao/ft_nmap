@@ -93,3 +93,4 @@ Port       Service Name (if applicable)     Results                             
 ## upcoming features
 - OS fingerprinting: Attempt to identify the operating system of the target host.
 - Simplified Version scanning: Attempts to Identify the versions of running services on some open ports.
+- Configuration file for multiple host scanning
