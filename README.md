@@ -36,9 +36,10 @@ $ ft_nmap [OPTIONS] TARGET PORT(S)
                default: enp0s3
                mandatory if this interface is not present/active
 ```
-## Example
+## Example Output
 ```
 $ ft_nmap --scan SYN ACK scanme.nmap.org 80-90
+
 Configurations:
 Target Ip-Address: 45.33.32.156
 Source Ip-Address: x.x.x.x
