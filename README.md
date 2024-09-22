@@ -35,6 +35,9 @@ $ ft_nmap [OPTIONS] TARGET PORT(S)
 --interface    name of the interface to use
                default: enp0s3
                mandatory if this interface is not present/active
+--source       source ip address to use
+               this options disables looking up an interface address
+               responses from target will come to this one
 ```
 ## example output
 ```
