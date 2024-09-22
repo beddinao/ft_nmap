@@ -60,33 +60,33 @@ IP address: 45.33.32.156
 
 Open ports:
 Port       Service Name (if applicable)     Results                                [Conclusion]
-                                                                                                               
+
 80         http                             SYN(Open) ACK(Unfiltered)              [Open]
-                                                                                                               
+
 
 Closed/Filtered/Unfiltered ports:
 Port       Service Name (if applicable)     Results                                [Conclusion]
-                                                                                                               
+
 81         hosts2-ns                        SYN(Closed) ACK(Unfiltered)            [Closed]
-                                                                                                               
+
 82         xfer                             SYN(Closed) ACK(Unfiltered)            [Closed]
-                                                                                                               
+
 83         mit-ml-dev                       SYN(Closed) ACK(Unfiltered)            [Closed]
-                                                                                                               
+
 84         ctf                              SYN(Closed) ACK(Unfiltered)            [Closed]
-                                                                                                               
+
 85         mit-ml-dev                       SYN(Closed) ACK(Unfiltered)            [Closed]
-                                                                                                               
+
 86         mfcobol                          SYN(Closed) ACK(Unfiltered)            [Closed]
-                                                                                                               
+
 87         priv-term-l                      SYN(Closed) ACK(Unfiltered)            [Closed]
-                                                                                                               
+
 88         kerberos-sec                     SYN(Closed) ACK(Unfiltered)            [Closed]
-                                                                                                               
+
 89         su-mit-tg                        SYN(Closed) ACK(Unfiltered)            [Closed]
-                                                                                                               
+
 90         dnsix                            SYN(Closed) ACK(Unfiltered)            [Closed]
-                                                                                                               
+
 
 ```
 
