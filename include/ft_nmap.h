@@ -164,8 +164,11 @@ typedef	struct	opts {
 	bool		interface;
 	char		interface_name[IFR_MAX_LGH];
 	//
-	bool		source;
+	bool		source_ip;
 	char		source_addr[ADDR_MAX_LGH];
+	//
+	bool		source_port;
+	int		source_port_num;
 }	Options;
 
 typedef	struct worker {

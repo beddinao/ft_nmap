@@ -163,12 +163,24 @@ void	print_help(bool options) {
 		print_line(' ', f_col, NULL, NULL, false);
 		printf("example: --flags syn ack\n");
 
+		print_str_col("--source-ip", 11, f_col, false);
+		printf("source ip address to use\n");
+		print_line(' ', f_col, NULL, NULL, false);
+		printf("this options disables looking up an interface address\n");
+		print_line(' ', f_col, NULL, NULL, false);
+		printf("responses from target will come to this one\n");
+
+		print_str_col("--source-port", 13, f_col, false);
+		printf("source port to use\n");
+		print_line(' ', f_col ,NULL, NULL, false);
+		printf("default: random\n");
+
 		print_str_col("--seq", 5, f_col, false);
 		printf("tcp header: sequence number\n");
 		print_line(' ', f_col, NULL, NULL, false);
 		printf("default: random\n");
 
-		print_str_col("--ack_seq", 9, f_col, false);
+		print_str_col("--ack-seq", 9, f_col, false);
 		printf("tcp header: acknowledgment number\n");
 		print_line(' ', f_col, NULL, NULL, false);
 		printf("default: 0\n");
@@ -186,13 +198,6 @@ void	print_help(bool options) {
 		printf("default: enp0s3\n");
 		print_line(' ', f_col, NULL, NULL, false);
 		printf("mandatory if this interface is not present/active\n");
-
-		print_str_col("--source", 8, f_col, false);
-		printf("source ip address to use\n");
-		print_line(' ', f_col, NULL, NULL, false);
-		printf("this options disables looking up an interface address\n");
-		print_line(' ', f_col, NULL, NULL, false);
-		printf("responses from target will come to this one\n");
 	}
 }
 

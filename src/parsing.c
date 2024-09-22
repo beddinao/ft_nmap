@@ -173,12 +173,30 @@ bool	is_valid_source(char **v, int *arg, int c, Options *input) {
 			return false;
 	}
 
-	input->source = true;
+	input->source_ip = true;
 	memcpy(&input->source_addr, v[*arg], size);
 	*arg += 1;
 	return true;
 }
 
+bool	is_valid_port(char **v, int *arg, int c, Options *input) {
+	if (*arg + 1 > c - 2)	return false;
+	int	number;
+	int	size = strlen(v[*arg]);
+	if (size > MAX_PORT_SZ)	return false;
+	for (int i = 0; i < size; i++)
+		if (!isdigit(v[*arg][i]))
+			return false;
+	number = atoi(v[*arg]);
+	if (!number || number < MIN_PORT_NUM
+		|| number > MAX_PORT_NUM)
+		return false;
+
+	input->source_port = true;
+	input->source_port_num = number;
+	*arg += 1;
+	return true;
+}
 
 void	parse_input(Options *input, char **v, int c) {
 	input->valid = 1;
@@ -232,7 +250,7 @@ void	parse_input(Options *input, char **v, int c) {
 					break;
 				}
 			}
-			else if (!strcmp(v[arg], "--seq") || !strcmp(v[arg], "--ack_seq")) {
+			else if (!strcmp(v[arg], "--seq") || !strcmp(v[arg], "--ack-seq")) {
 				arg++;
 				if (!is_valid_seq(v, &arg, c, input)) {
 					write(2, "invalid sequence number: ", 25);
@@ -256,10 +274,18 @@ void	parse_input(Options *input, char **v, int c) {
 					break;
 				}
 			}
-			else if (!strcmp(v[arg], "--source")) {
+			else if (!strcmp(v[arg], "--source-ip")) {
 				arg++;
 				if (!is_valid_source(v, &arg, c, input)) {
 					write(2, "invalid source address: ", 24);
+					input->valid = 0;
+					break ;
+				}
+			}
+			else if (!strcmp(v[arg], "--source-port")) {
+				arg++;
+				if (!is_valid_port(v, &arg, c, input)) {
+					write(2, "invalid port: ", 14);
 					input->valid = 0;
 					break ;
 				}

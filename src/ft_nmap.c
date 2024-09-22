@@ -1,6 +1,6 @@
 #include "ft_nmap.h"
 
-int	send_packet(int protocol, struct sockaddr_in daddr, struct sockaddr_in saddr, int dport, int seq, int ack_seq,
+int	send_packet(int protocol, struct sockaddr_in daddr, struct sockaddr_in saddr, int sport, int dport, int seq, int ack_seq,
 	int syn, int ack, int rst, int fin, int psh, int urg, bool verbose) {
 
 	char		packet[PK_SIZE];
@@ -50,7 +50,7 @@ int	send_packet(int protocol, struct sockaddr_in daddr, struct sockaddr_in saddr
 	ip_hdr->tot_len = htons(iphdr_size + trsphdr_size);
 
 	if (protocol == IPPROTO_TCP) {
-		tcp_hdr->source = htons(random_num());
+		tcp_hdr->source = htons(sport);
 		tcp_hdr->dest = htons(dport);
 		tcp_hdr->seq = htonl(seq);
 		tcp_hdr->ack_seq = htonl(ack_seq);
@@ -212,7 +212,9 @@ PStatus	syn_scan(struct sockaddr_in src, struct sockaddr_in dst, int port, Optio
 	struct	sockaddr_in	source;
 	PStatus			pS = CLOSED_FILTERED;
 	pid_t			pid;
-	int			_res = 0;
+	int			_res = 0,
+				sport = input->source_port ?
+				input->source_port_num : random_num();
 
 	memset(&tcp_hdr, 0, sizeof(tcp_hdr));
 	memset(&udp_hdr, 0, sizeof(udp_hdr));
@@ -221,7 +223,7 @@ PStatus	syn_scan(struct sockaddr_in src, struct sockaddr_in dst, int port, Optio
 
 	pid = fork();
 	if (!pid) {
-		send_packet(IPPROTO_TCP, dst, src, port, input->seq_num, input->ack_seq_num, 1, 0, 0, 0, 0, 0, input->verbose);
+		send_packet(IPPROTO_TCP, dst, src, sport, port, input->seq_num, input->ack_seq_num, 1, 0, 0, 0, 0, 0, input->verbose);
 		exit(0);
 	}
 	else if (pid < 0)	return FAILURE;
@@ -252,7 +254,9 @@ PStatus	ack_scan(struct sockaddr_in src, struct sockaddr_in dst, int port, Optio
 	struct	sockaddr_in	source;
 	PStatus			pS = CLOSED_FILTERED;
 	pid_t			pid;
-	int			_res = 0;
+	int			_res = 0,
+				sport = input->source_port ?
+				input->source_port_num : random_num();
 
 	memset(&tcp_hdr, 0, sizeof(tcp_hdr));
 	memset(&icmp_hdr, 0, sizeof(icmp_hdr));
@@ -260,7 +264,7 @@ PStatus	ack_scan(struct sockaddr_in src, struct sockaddr_in dst, int port, Optio
 
 	pid = fork();
 	if (!pid) {
-		send_packet(IPPROTO_TCP, dst, src, port, input->seq_num, input->ack_seq_num, 0, 1, 0, 0, 0, 0, input->verbose);
+		send_packet(IPPROTO_TCP, dst, src, sport, port, input->seq_num, input->ack_seq_num, 0, 1, 0, 0, 0, 0, input->verbose);
 		exit(0);
 	}
 	else if (pid < 0)	return FAILURE;
@@ -289,7 +293,9 @@ PStatus	custom_scan(struct sockaddr_in src, struct sockaddr_in dst, int port, Op
 	struct	sockaddr_in	source;
 	PStatus		pS = SUCCESS;
 	pid_t		pid;
-	int		_res = 0;
+	int		_res = 0,
+			sport = input->source_port ?
+			input->source_port_num : random_num();
 
 	memset(&tcp_hdr, 0, sizeof(tcp_hdr));
 	memset(&icmp_hdr, 0, sizeof(icmp_hdr));
@@ -297,7 +303,7 @@ PStatus	custom_scan(struct sockaddr_in src, struct sockaddr_in dst, int port, Op
 
 	pid = fork();
 	if (!pid) {
-		send_packet(IPPROTO_TCP, dst, src, port, input->seq_num, input->ack_seq_num,
+		send_packet(IPPROTO_TCP, dst, src, sport, port, input->seq_num, input->ack_seq_num,
 			input->f_syn, input->f_ack, input->f_rst, input->f_fin, input->f_psh, input->f_urg, input->verbose);
 		exit(0);
 	}
@@ -318,7 +324,9 @@ PStatus	fin_null_xmas_scans(struct sockaddr_in src, struct sockaddr_in dst, int 
 	struct	sockaddr_in	source;
 	PStatus			pS = CLOSED_FILTERED;
 	pid_t			pid;
-	int			_res = 0;
+	int			_res = 0,
+				sport = input->source_port ?
+				input->source_port_num : random_num();
 
 	memset(&tcp_hdr, 0, sizeof(tcp_hdr));
 	memset(&icmp_hdr, 0, sizeof(icmp_hdr));
@@ -326,7 +334,7 @@ PStatus	fin_null_xmas_scans(struct sockaddr_in src, struct sockaddr_in dst, int 
 
 	pid = fork();
 	if (!pid) {
-		send_packet(IPPROTO_TCP, dst, src, port, input->seq_num, input->ack_seq_num, 0, 0, 0, fin, psh, urg, input->verbose);
+		send_packet(IPPROTO_TCP, dst, src, sport, port, input->seq_num, input->ack_seq_num, 0, 0, 0, fin, psh, urg, input->verbose);
 		exit(0);
 	}
 	else if (pid < 0) return FAILURE;
@@ -356,6 +364,8 @@ PStatus	udp_scan(struct sockaddr_in src, struct sockaddr_in dst, int port, Optio
 	struct	sockaddr_in	source;
 	pid_t			pid;
 	PStatus			pS = CLOSED_FILTERED;
+	int			sport = input->source_port ?
+				input->source_port_num : random_num();
 
 	memset(&udp_hdr, 0, sizeof(udp_hdr));
 	memset(&icmp_hdr, 0, sizeof(icmp_hdr));
@@ -363,7 +373,7 @@ PStatus	udp_scan(struct sockaddr_in src, struct sockaddr_in dst, int port, Optio
 
 	pid = fork();
 	if (!pid) {
-		send_packet(IPPROTO_UDP, dst, src, port, 0, 0, 0, 0, 0, 0, 0, 0, input->verbose);
+		send_packet(IPPROTO_UDP, dst, src, sport, port, 0, 0, 0, 0, 0, 0, 0, 0, input->verbose);
 		exit(0);
 	}
 	else if (pid < 0) return FAILURE;

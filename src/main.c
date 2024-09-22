@@ -47,7 +47,7 @@ bool	prepare_configuration(Options *input, SType *scan_types, struct addrinfo *d
 	printf("Target Ip-Address: %s\n", inet_ntoa(((struct sockaddr_in*)dest->ai_addr)->sin_addr));
 	printf("Source Ip-Address: %s\n", inet_ntoa(src.sin_addr));
 
-	if (!input->source) {
+	if (!input->source_ip) {
 		printf("Using Interface: %s\n", input->interface_name);
 		print_line('.', TERM_WIDTH / 5, NULL, NULL, true);
 		is_host_up = _icmp_check(src, dest, input);
@@ -55,6 +55,9 @@ bool	prepare_configuration(Options *input, SType *scan_types, struct addrinfo *d
 		if (is_host_up <= 0)
 			return	false;
 	}
+
+	if (input->source_port)
+		printf("Source port: %i\n", input->source_port_num);
 
 	print_line('.', TERM_WIDTH / 5, NULL, NULL, true);
 	printf("No of Ports to scan: %i\n", input->total_ports);
@@ -118,7 +121,7 @@ int	main(int c, char **v) {
 	dst.sin_family = AF_INET;
 	src.sin_family = AF_INET;
 	dst.sin_addr.s_addr = inet_addr(inet_ntoa(((struct sockaddr_in*)dest->ai_addr)->sin_addr));
-	if (input.source)
+	if (input.source_ip)
 		src.sin_addr.s_addr = inet_addr(input.source_addr);
 	else
 		src.sin_addr.s_addr = inet_addr(_interface_ip(input.interface_name, IPPROTO_TCP));
