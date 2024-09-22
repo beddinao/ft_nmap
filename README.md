@@ -19,25 +19,27 @@ $ ft_nmap [OPTIONS] TARGET PORT(S)
 ```
 ## options
 ```
---help         prints this help screen and exit
---verbose      display incoming/outgoing packets
---scan         one or multiple scans: SYN | NULL | FIN | XMAS | ACK | UDP
-               dafault: all
---flags        setting the tcp flags header manually [syn, ack, rst, fin, psh, urg]
-               example: --flags syn ack
---seq          tcp header: sequence number
-               default: random
---ack_seq      tcp header: acknowledgment number
-               default: 0
---speedup      number of parallel threads to use
-               max: 255
-               default: number of threads == number of ports
---interface    name of the interface to use
-               default: enp0s3
-               mandatory if this interface is not present/active
---source       source ip address to use
-               this options disables looking up an interface address
-               responses from target will come to this one
+--help          prints this help screen and exit
+--verbose       display incoming/outgoing packets
+--scan          one or multiple scans: SYN | NULL | FIN | XMAS | ACK | UDP
+                dafault: all
+--flags         custom scan by setting the tcp flags header manually [syn, ack, rst, fin, psh, urg]
+                example: --flags syn ack
+--source-ip     source ip address to use
+                this options disables looking up an interface address
+                responses from target will come to this one
+--source-port   source port to use
+                default: random
+--seq           tcp header: sequence number
+                default: random
+--ack-seq       tcp header: acknowledgment number
+                default: 0
+--speedup       number of parallel threads to use
+                max: 255
+                default: number of threads == number of ports
+--interface     name of the interface to use
+                default: enp0s3
+                mandatory if this interface is not present/active
 ```
 ## example output
 ```
