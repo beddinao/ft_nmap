@@ -55,7 +55,7 @@ Using known services database: database/services
 Scans to be performed: SYN ACK 
 Scanning...
 ......................
-Scan took 0.028658 secs
+Scan took 0.015029 secs
 IP address: 45.33.32.156
 
 Open ports:
