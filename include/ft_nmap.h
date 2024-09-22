@@ -57,6 +57,7 @@
 #define	MAX_PORT_NUM	65535
 #define	MAX_TAR_LGH	255
 #define	IFR_MAX_LGH	16
+#define	ADDR_MAX_LGH	15
 
 #define	NRMC		"\e[0m"
 #define	WHTC		"\e[4;37m"
@@ -162,6 +163,9 @@ typedef	struct	opts {
 	//
 	bool		interface;
 	char		interface_name[IFR_MAX_LGH];
+	//
+	bool		source;
+	char		source_addr[ADDR_MAX_LGH];
 }	Options;
 
 typedef	struct worker {

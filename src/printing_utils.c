@@ -132,7 +132,7 @@ void	print_results(Scan *scans, int total_scans, char *addr, clock_t _s_time) {
 void	print_help(bool options) {
 	int	f_col = TERM_WIDTH / 7;
 
-	printf("\nusage:\n");
+	printf("usage:\n");
 
 	printf("ft_nmap [OPTIONS] TARGET PORT(S)\n");
 	print_line(' ', f_col, NULL, NULL, false);
@@ -186,6 +186,13 @@ void	print_help(bool options) {
 		printf("default: enp0s3\n");
 		print_line(' ', f_col, NULL, NULL, false);
 		printf("mandatory if this interface is not present/active\n");
+
+		print_str_col("--source", 8, f_col, false);
+		printf("source ip address to use\n");
+		print_line(' ', f_col, NULL, NULL, false);
+		printf("this options disables looking up an interface address\n");
+		print_line(' ', f_col, NULL, NULL, false);
+		printf("responses from target will come to this one\n");
 	}
 }
 

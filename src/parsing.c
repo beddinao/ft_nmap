@@ -157,6 +157,29 @@ bool	is_valid_interface(char **v, int *arg, int c, Options *input) {
 	return true;
 }
 
+bool	is_valid_source(char **v, int *arg, int c, Options *input) {
+	if (*arg + 1 > c - 2)	return false;
+
+	int	size = strlen(v[*arg]), dots = 0;
+	if (size > ADDR_MAX_LGH)	return false;
+	for (int i = 0; i < size; i++) {
+		if (v[*arg][i] == '.') {
+			if (dots < 3)
+				dots++;
+			else	return false;
+			continue ;
+		}
+		if (!isdigit(v[*arg][i]))
+			return false;
+	}
+
+	input->source = true;
+	memcpy(&input->source_addr, v[*arg], size);
+	*arg += 1;
+	return true;
+}
+
+
 void	parse_input(Options *input, char **v, int c) {
 	input->valid = 1;
 
@@ -231,6 +254,14 @@ void	parse_input(Options *input, char **v, int c) {
 					write(2, "invalid interface name: ", 24);
 					input->valid = 0;
 					break;
+				}
+			}
+			else if (!strcmp(v[arg], "--source")) {
+				arg++;
+				if (!is_valid_source(v, &arg, c, input)) {
+					write(2, "invalid source address: ", 24);
+					input->valid = 0;
+					break ;
 				}
 			}
 			else {
