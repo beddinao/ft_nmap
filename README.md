@@ -35,6 +35,9 @@ $ ft_nmap [OPTIONS] TARGET PORT(S)
 --interface    name of the interface to use
                default: enp0s3
                mandatory if this interface is not present/active
+--source       source ip address to use
+               this options disables looking up an interface address
+               responses from target will come to this one
 ```
 ## example output
 ```
@@ -92,5 +95,5 @@ Port       Service Name (if applicable)     Results                             
 
 ## upcoming features
 - OS fingerprinting: Attempt to identify the operating system of the target host.
-- Simplified Version scanning: Attempts to Identify the versions of running services on some open ports.
+- Simplified Version detection: Attempts to Identify the versions of running services on some open ports.
 - Configuration file for multiple host scanning
