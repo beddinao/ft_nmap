@@ -1,23 +1,23 @@
 # FT_NMAP
 
-## About
+## about
 This project is a simple, yet effective port scanning tool designed to help identify open ports on a target network or host. Crafted in C for efficiency and portability, it offers a basic foundation for network exploration and security assessments.
-## Key Features
+## key features
 - initial ICMP ping: Prior to port scanning, the tool performs an ICMP ping to verify host connectivity.
 - Nmap-like scans: Perform SYN, ACK, FIN, NULL, XMAS, and UDP scans to identify open ports and running services.
 - Custom TCP flags: Customize scan behavior by specifying custom TCP flag combinations using the --flags option.
 - Service detection: Attempts to identify potential services by comparing ports and transport protocols to the Service Name and Transport Protocol Port Number Registry.
-## Requirements
+## requirements
 - linux
 - root privilege
-## Usage
+## usage
 ```
 $ ft_nmap [OPTIONS] TARGET PORT(S)
                target: ip address of the target host or its FQDN
                ports: a single port number or a range in the syntax xx-xx
                1024 is the max number of ports
 ```
-## Options
+## options
 ```
 --help         prints this help screen and exit
 --verbose      display incoming/outgoing packets
@@ -36,7 +36,7 @@ $ ft_nmap [OPTIONS] TARGET PORT(S)
                default: enp0s3
                mandatory if this interface is not present/active
 ```
-## Example Output
+## example output
 ```
 $ ft_nmap --scan SYN ACK scanme.nmap.org 80-90
 
@@ -90,6 +90,6 @@ Port       Service Name (if applicable)     Results                             
 
 ```
 
-## Upcoming Features
+## upcoming features
 - OS fingerprinting: Attempt to identify the operating system of the target host.
 - Simplified Version scanning: Attempts to Identify the versions of running services on some open ports.
