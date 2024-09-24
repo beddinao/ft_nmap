@@ -1,4 +1,5 @@
-# FT_NMAP
+# *`FT_NMAP`*
+
 
 ## about
 This project is a simple, yet effective port scanning tool designed to help identify open ports on a target network or host. Crafted in C for efficiency and portability.
