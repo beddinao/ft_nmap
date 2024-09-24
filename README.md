@@ -2,7 +2,7 @@
 
 
 ## about
-This project is a simple, yet effective port scanning tool designed to help identify open ports on a target network or host. Crafted in C for efficiency and portability.
+simple yet effective port scanning tool designed to help identify open ports on a target network or host. Crafted in C for efficiency and portability.
 ## key features
 - initial ICMP ping: Prior to port scanning, the tool performs an ICMP ping to verify host connectivity.
 - Nmap-like scans: Perform SYN, ACK, FIN, NULL, XMAS, and UDP scans to identify open ports and running services.
