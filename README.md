@@ -1,8 +1,5 @@
 # *`FT_NMAP`*
 
-
-## about
-simple and effective port scanning tool to identify open ports on a target network or host.
 ## key features
 - initial ICMP ping: Prior to port scanning, the tool performs an ICMP ping to verify host connectivity.
 - Nmap-like scans: Perform SYN, ACK, FIN, NULL, XMAS, and UDP scans to identify open ports and running services.
